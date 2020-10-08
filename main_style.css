@@ -1,7 +1,6 @@
 body{
     margin:0px;
     padding:0px;
-    font-size:20px;
     font-family: 'Poppins', sans-serif;
 }
 .container{
@@ -28,7 +27,6 @@ header{
 
 
 nav{
-    /* border:1px solid red; */
     width:60vw;
     margin:0px auto;
     display:flex;
@@ -41,12 +39,48 @@ nav{
 }
 
 .main_part{
-    /* border:1px solid blue; */
+    border:1px solid blue;
     display:flex;
     flex-grow:1;
     width:90vw;
     margin:0px auto;
 }
+
+.pizza_item{
+    border:1px solid yellow;
+    display:flex;
+    flex-direction:column;
+    width:200px;
+    height:400px;
+    margin:10px;
+    padding:5px;
+}
+
+.img_item{
+    height:50%;
+    width:100%;
+}
+
+.pizza_block{
+    display:flex;
+}
+
+.pizza_item p{
+    flex-wrap:wrap;
+    text-align:center;
+}
+.item_name{
+    font-size:1em;
+}
+.recipe{
+    font-size:0.7em;
+    color:grey;
+}
+.price{
+    font-size:1.5em;
+}
+
+
 footer{
     background:lightgrey;
     margin-top:auto;
