@@ -11,18 +11,8 @@ body{
 
 header{
     background:lightgrey;
-    height:10vh;
+    height:50px;
     display:flex;
-}
-
-.logo{
-    display:flex;
-    flex:1; 
-}
-
-.logo img{
-    height:100%;
-    margin:auto;
 }
 
 nav{
@@ -31,26 +21,25 @@ nav{
     display:flex;
     justify-content:space-evenly;
     align-items:center;
-    flex:4;
 }
 
 .navlink{
     text-decoration:none;
+    color:black;
 }
 
 .main_part{
-    border:1px solid blue;
+    border:1px solid orange;
     width:80vw;
     margin:0px auto;
 }
 
 .block_name{
-    /* border:1px solid red; */
     text-align:center;
 }
 
 .pizza_item{
-    /* border:1px solid purple; */
+    border:1px solid purple;
     display:flex;
     flex-direction:column;
     width:200px;
@@ -101,11 +90,10 @@ nav{
     bottom:10px;
 }
 
-
 footer{
     background:lightgrey;
     margin-top:auto;
-    height:10vh;
-    font-size:10px;
+    height:50px;
     text-align:center;
 }
+
