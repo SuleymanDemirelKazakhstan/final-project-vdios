@@ -10,7 +10,7 @@ body{
 }
 
 header{
-    background:lightgrey;
+    background:orange;
     height:50px;
     display:flex;
 }
@@ -29,7 +29,7 @@ nav{
 }
 
 .main_part{
-    border:1px solid orange;
+    /* border:1px solid orange; */
     width:80vw;
     margin:0px auto;
 }
@@ -39,19 +39,25 @@ nav{
 }
 
 .pizza_item{
-    border:1px solid purple;
+    /* border:1px solid purple; */
     display:flex;
     flex-direction:column;
     width:200px;
     height:350px;
     margin:20px 10px;
     padding:10px;   
+    /* position:relative; */
+}
+
+.item_description{
     position:relative;
+    /* border:1px solid red; */
+    height:150px;
 }
 
 .img_item{
     height:200px;
-    width:100%;
+    width:200px;
 }
 
 .button_choose{
@@ -91,9 +97,20 @@ nav{
 }
 
 footer{
-    background:lightgrey;
+    background:orange;
     margin-top:auto;
     height:50px;
     text-align:center;
+    font-size:0.5em;
 }
 
+@media screen and (max-width:768px){
+    .pizza_item{
+        flex-direction:row;
+        height:200px;
+        width:100%;  
+    }
+    .item_description{
+        height:200px;
+    }
+}

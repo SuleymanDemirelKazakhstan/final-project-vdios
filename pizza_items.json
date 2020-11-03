@@ -1,0 +1,4 @@
+"pizzas":[
+{   "name":"mexican","source":"images\\mexican.jpg","recipe":"Spicy chicken, tomato sauce, bell peppers, red onion, mozzarella, hot jalapeno peppers, tomatoes, salsa sauce","price":"1950"    },
+{   "name":"arriva","source":"images\\arriva.jpeg","recipe":"Burger sauce, chicken, ranch sauce, chicken chorizo, bell peppers, red onions, mozzarella, tomatoes, garlic", "price":"1750" }
+]
