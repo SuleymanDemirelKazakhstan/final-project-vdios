@@ -8,6 +8,9 @@ let pizzas = [
     {   "name":"pizza pie","source":"images\\pizza_pie.jpg","recipe":"Pineapples, lingonberries, condensed milk","price":"1550"    }
 ]
 
+// let data = JSON.parse(pizzas);
+console(pizzas);
+
 const container = document.querySelector('.pizza_block');
 for(let item of pizzas){
     const currentDiv = document.createElement('div');
