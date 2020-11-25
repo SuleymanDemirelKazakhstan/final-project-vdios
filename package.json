@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SuleymanDemirelKazakhstan/final-project-vdios/issues"
   },
-  "homepage": "https://github.com/SuleymanDemirelKazakhstan/final-project-vdios#readme"
+  "homepage": "https://github.com/SuleymanDemirelKazakhstan/final-project-vdios#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
