@@ -5,21 +5,29 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const router = require('./routes/router.js');
 const MongoClient = require('mongodb').MongoClient;
-const mongourl = 'mongodb://localhost:27027/';
+const mongourl = 'mongodb://localhost:27017/';
 
 const app = express();
 app.engine('handlebars',exphbs());
 app.set('view engine','handlebars');
 
+let data = null;
+
 MongoClient.connect(mongourl,(error,db)=>{
     if(error) throw error;
 
+    const dbo = db.db('finalprojectdb');
+    dbo.createCollection('data',(err,dbres)=>{
+        if(err) throw err;
+        data = dbres;
+    });
+
     app.get('/',(request,response)=>{
-        response.send('');
+        response.send('main page');
     });
 
     app.use((request,response,next)=>{
-        //connecting collection
+        request.data = data;
         next();
     });
 
