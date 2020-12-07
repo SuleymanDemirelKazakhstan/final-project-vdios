@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const User = require('../models/user.js');
 
 router.get('/',(request,response)=>{
@@ -16,7 +15,6 @@ router.get('/',(request,response)=>{
 router.post('/status',(request,response)=>{
     const username = request.body.username;
     const password = request.body.password;
-    const currentUser = new User({username:username});
 
         User.findOne({username:username},'username password',(err,foundres)=>{
             if(err) throw err;
@@ -33,7 +31,7 @@ router.post('/status',(request,response)=>{
                 else{
                     response.send(`username '${username}' doesn't exist in database`);
                 }
-         });
+        });
 });
 
 module.exports = router;
