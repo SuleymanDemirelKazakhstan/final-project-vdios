@@ -1,11 +1,13 @@
-{{#each pizzas}}
-<div class='pizza_item'>
-    <img src={{sourse}} class='img_item'>
-    <div class='item_description'>
-        <p class='item_name'>{{name}}</p>
-        <p class='recipe'>{{recipe}}</p>
-        <p class='price'>{{price}} tg</p>
-        <button class='button_choose'>Choose</button>
-    </div>
+<div class='block_name'>
+    <p>pizzas</p>
 </div>
-{{#each}}
+
+<div class='pizza_container'>
+    {{#each pizzas}}
+        <div class='pizza_card'>
+            <p class='item_name'>{{this.name}}</p>
+            <p class='price'>{{this.price}}</p>
+            <button class='button_choose'>choose</button>
+        </div>
+    {{/each}}
+</div>

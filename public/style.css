@@ -1,0 +1,63 @@
+body{
+    margin:0px;
+    padding:0px;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+header{
+    background:orange;
+    height:50px;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+}
+.navlink{
+    text-decoration:none;
+    color:black;
+}
+
+
+
+.main_part{
+    border:1px solid purple;
+    width:80vw;
+    margin:0px auto;
+}
+
+footer{
+    background:orange;
+    margin-top:auto;
+    height:50px;
+    text-align:center;
+    font-size:0.5em;
+}
+
+/* .pizza_item{
+    display:flex;
+    flex-direction:column;
+    width:200px;
+    height:350px;
+    margin:20px 10px;
+    padding:10px;   
+    /* position:relative; 
+} */
+
+/* .img_item{
+    height:200px;
+    width:200px;
+} */
+
+/* @media screen and (max-width:768px){
+    .pizza_item{
+        flex-direction:row;
+        height:200px;
+        width:100%;  
+    }
+    .item_description{
+        height:200px;
+    }
+} */

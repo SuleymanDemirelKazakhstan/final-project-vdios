@@ -3,13 +3,7 @@ const router = express.Router();
 const User = require('../models/user.js');
 
 router.get('/',(request,response)=>{
-    const template = `
-    <form action='/auth/status' method='post'>
-    <input type='text' name='username'>
-    <input type='password' name='password'>
-    <input type='submit'>
-    </form>`;
-    response.send(template);
+    response.render('auth_form');
 });
 
 router.post('/status',(request,response)=>{
@@ -18,19 +12,21 @@ router.post('/status',(request,response)=>{
 
         User.findOne({username:username},'username password',(err,foundres)=>{
             if(err) throw err;
-
+            let status;
                 if(foundres){
                     if(foundres.password == password){
                         request.session.username = username;
-                        response.send(`welcome ${username}`);
+                        status = `welcome ${username}`;
                     }
                     else{
-                        response.send(`password for username '${username}' is not correct`);
+                        status = `password for username '${username}' is not correct`;
                     }
                 }
                 else{
-                    response.send(`username '${username}' doesn't exist in database`);
+                    status = `username '${username}' doesn't exist in database`;
                 }
+
+            response.render('status',{status:status});
         });
 });
 
