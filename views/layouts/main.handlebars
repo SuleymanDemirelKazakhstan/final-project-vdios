@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="pizza_style.css"> 
+        <title>pizzahouse</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/pizza_style.css"> 
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
         {{!-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
         {{!-- <script type="text/javascript" src="pizza_items.json"></script> --}}
-        <script type="text/javascript" src="client.js" defer></script>
+        {{!-- <script type="text/javascript" src="client.js" defer></script> --}}
     </head>
     
     <body>
 
         <div class="container">
                 <header>
-                    <a href="/shop" class="navlink">shop</a>
+                    <a href="/home" class="navlink">home</a>
                     <a href="/auth" class="navlink">login</a>
-                    <a href="/order" class="navlink">make order</a>
+                    <a href="/home/order" class="navlink">make order</a>
                 </header>
 
                 <div class='main_part'>
-                        {{{body}}}
+                    {{{body}}}
                 </div>
 
                 <footer>

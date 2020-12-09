@@ -12,12 +12,7 @@ const mongourl = 'mongodb://localhost:27017/finalprojectdb';
 const app = express();
 app.engine('handlebars',exphbs());
 app.set('view engine','handlebars');
-app.use(express.static(path.join(__dirname, 'public')))
-// app.use(express.static('public'))
-
-app.get('/',(request,response)=>{
-    response.send('main page');
-});
+app.use(express.static('public'))
 
 mongoose.connect(mongourl,{useNewUrlParser:true,useUnifiedTopology:true},(err,ok)=>{
     if(err) throw err;

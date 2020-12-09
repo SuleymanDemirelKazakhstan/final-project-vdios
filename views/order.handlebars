@@ -1,0 +1,40 @@
+<style>
+    .order_container{
+        display:flex;
+    }
+
+    .orderlist{
+        display:flex;
+        flex-direction:column;
+        width:200px;
+        margin:0 auto;
+    }
+
+    .order_form{
+        display:flex;
+        flex-direction:column;
+        width:200px;
+        margin:0 auto;
+    }
+
+
+</style>
+
+<div class='order_container'>
+    <div class='orderlist'>
+        <h3>your order: </h3>
+        {{#each order}}
+            {{pizza_description.name}} {{pizza_description.price}}  x{{count}}<br>
+        {{/each}}
+    </div>
+
+    <div class='order_form'>
+        <form action='order/status' method='post'>
+            <label>phone number: </label>
+            <input type='text' name='phone_number'><br>
+            <label>address: </label>
+            <input type='text' name='address'>
+            <input type='submit'>
+        </form>
+    </div>
+</div>  
