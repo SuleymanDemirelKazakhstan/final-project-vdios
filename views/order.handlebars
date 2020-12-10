@@ -16,8 +16,6 @@
         width:200px;
         margin:0 auto;
     }
-
-
 </style>
 
 <div class='order_container'>
@@ -30,10 +28,10 @@
 
     <div class='order_form'>
         <form action='order/status' method='post'>
-            <label>phone number: </label>
-            <input type='text' name='phone_number'><br>
             <label>address: </label>
-            <input type='text' name='address'>
+            <input type='text' name='address' value={{userdata.address}}>
+            <label>phone number: </label>
+            <input type='text' name='phone_number' value="{{userdata.phone_number}}"><br>
             <input type='submit'>
         </form>
     </div>

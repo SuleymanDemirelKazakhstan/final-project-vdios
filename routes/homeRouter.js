@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pizza = require('../models/pizza.js');
 const Order = require('../models/order.js');
+const User = require('../models/user.js');
 
 
 router.get('/',(request,response)=>{
@@ -31,17 +32,20 @@ router.get('/basket',(request,response)=>{
 });
 
 router.get('/order',(request,response)=>{
-    const obj = request.session.basket;
+    const basketlist = request.session.basket;
+
     let orderlist = [];
-    for(let item in obj){
+    for(let item in basketlist){
         Pizza.findOne({name:item}).lean().exec((error,foundres)=>{
             if(error) throw error;
-            orderlist.push({pizza_description:foundres,count:obj[item]});
+            orderlist.push({pizza_description:foundres,count:basketlist[item]});
         });
     }
 
-    request.session.orderlist = orderlist;
-    response.render('order',{order:orderlist});
+    User.findOne({username:request.session.username}).lean().exec((error,foundres)=>{
+        if(error) throw error;
+        response.render('order',{order:orderlist,userdata:foundres});
+    });
 });
 
 router.post('/order/status',(request,response)=>{

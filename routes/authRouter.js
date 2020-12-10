@@ -40,7 +40,9 @@ router.get('/regist',(request,response)=>{
 router.post('/regist/status',(request,response)=>{
     const username = request.body.username;
     const password = request.body.password;
-    const currentUser = new User({username:username,password:password});
+    const address = request.body.address;
+    const phone_number = request.body.phone_number;
+    const currentUser = new User({username:username,password:password,address:address,phone_number:phone_number});
 
         User.findOne({username:username},'username',(error,foundres)=>{
             if(error) throw error;
