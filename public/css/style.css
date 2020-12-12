@@ -21,14 +21,12 @@ header{
 }
 
 
-
 .main_part{
     /* border:1px solid purple; */
     width:80vw;
     margin:0px auto;
     padding:50px;
 }
-
 footer{
     background:orange;
     margin-top:auto;
@@ -36,21 +34,6 @@ footer{
     text-align:center;
     font-size:0.5em;
 }
-
-/* .pizza_item{
-    display:flex;
-    flex-direction:column;
-    width:200px;
-    height:350px;
-    margin:20px 10px;
-    padding:10px;   
-    /* position:relative; 
-} */
-
-/* .img_item{
-    height:200px;
-    width:200px;
-} */
 
 /* @media screen and (max-width:768px){
     .pizza_item{

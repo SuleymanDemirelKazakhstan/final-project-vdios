@@ -1,0 +1,36 @@
+.orders_container{
+    display:flex;
+    flex-wrap: wrap;
+    font-size:0.9em;
+}
+
+.order_card{
+    border:3px solid purple;
+    border-radius:10px;
+    padding: 10px 20px 40px;
+    width:220px;
+    margin:10px;
+    position:relative;
+}
+
+.order_basket_container{
+    border:3px solid orange;
+    padding: 10px;
+    font-size:0.8em;
+}
+
+.order_basket_container p{
+    margin:0px;
+}
+
+.order_date{
+    font-size:0.8em;
+}
+
+.order_delete{
+    position:absolute;
+    bottom:10px;
+    left:20px;
+    text-decoration: none;
+    color:red;
+}

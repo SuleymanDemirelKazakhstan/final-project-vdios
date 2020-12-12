@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const router = require('./routes/router.js');
 const mongoose = require('mongoose');
-const path = require('path');
 
 const mongourl = 'mongodb://localhost:27017/finalprojectdb';
 
