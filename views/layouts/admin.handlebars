@@ -5,25 +5,24 @@
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/pizza_style.css"> 
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-        {{!-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     </head>
     
     <body>
 
         <div class="container">
-                <header>
-                    <a href='/home' class='navlink'>home</a>
-                    <a href='/home/order' class='navlink'>basket</a>
-                    <a href='/home/my_orders' class='navlink'>my orders</a>
-                    <a href='/auth' class='navlink'>login</a>
-                    <a href='/admin/pizzas' class='navlink'>adminmode</a>
+                <header style='background:blueviolet'>
+                    <a href='/home' class='navlink'>admin</a>
+                    <a href='/admin/pizzas' class='navlink'>pizzas</a>
+                    <a href='/admin/orders' class='navlink'>orders</a>
+                    <a href='/admin/users' class='navlink'>users</a>
+                    <a href='/home' class='navlink'>usermode</a>
                 </header>
 
                 <div class='main_part'>
                     {{{body}}}
                 </div>
 
-                <footer>
+                <footer style='background:blueviolet'>
                     <p>boring text about the copyrights and privacy policy</p>
                     <p>made in by bedroom</p>
                 </footer>

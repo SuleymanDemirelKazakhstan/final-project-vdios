@@ -23,7 +23,7 @@ router.post('/status',(request,response)=>{
                 if(foundres){
                     if(foundres.password == password){
                         request.session.username = username;
-                        response.render('status',{status:`welcome '${request.session.username}', let's <a href='/home'>buy</a> some pizza<br><a href='/auth/out'>log out</a>`});
+                        response.redirect('/auth');
                     }
                     else{
                         response.render('status',{status:`password for username '${username}' is not correct, please <a href='/auth'>login</a> again`});
@@ -39,7 +39,7 @@ router.post('/status',(request,response)=>{
 
 router.get('/out',(request,response)=>{
     request.session.username = null;
-    response.render('status',{status:`you are successfully logged out`})
+    response.redirect('/auth');
 });
 
 //registration///

@@ -9,7 +9,7 @@ const Order = require('../models/order.js');
 router.get('/users',(request,response)=>{
     User.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('admin_users',{users:foundres});
+        response.render('admin_users',{layout:'admin',users:foundres});
     });
 });
 
@@ -17,7 +17,7 @@ router.get('/users/delete',(request,response)=>{
     const user_id = request.query.user_id;
     User.findByIdAndDelete(user_id, (err)=>{
         if(err) throw err;
-        response.render('status',{status:`user with id ${user_id} successfully deleted`})
+        response.redirect('/admin/users');
     })
 });
 
@@ -26,12 +26,12 @@ router.get('/users/delete',(request,response)=>{
 router.get('/pizzas',(request,response)=>{
     Pizza.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('admin_pizzas',{pizzas:foundres});
+        response.render('admin_pizzas',{layout:'admin',pizzas:foundres});
     });
 });
 
 router.get('/pizzas/create',(request,response)=>{
-    response.render('admin_create_pizza');
+    response.render('admin_create_pizza',{layout:'admin'});
 });
 
 router.post('/pizzas/create/status',(request,response)=>{
@@ -41,12 +41,8 @@ router.post('/pizzas/create/status',(request,response)=>{
     
     const current_pizza = new Pizza({pizza_name:pizza_name,recipe:recipe,price:price});
     current_pizza.save((err)=>{
-        if(err){
-            response.render('status',{status:err});
-        }
-        else{
-            response.render('status',{status:`pizza successfully created<br><a href='/admin/pizzas'>back</a>`});
-        }
+        if(err) throw err;
+        response.redirect('/admin/pizzas');
     });
 });
 
@@ -54,7 +50,7 @@ router.get('/pizzas/delete',(request,response)=>{
     const pizza_id = request.query.pizza_id;
     Pizza.findByIdAndDelete(pizza_id, (err)=>{
         if(err) throw err;
-        response.render('status',{status:`pizza with id ${pizza_id} successfully deleted<br><a href='/admin/pizzas'>back</a>`});
+        response.redirect('/admin/pizzas');
     })
 });
 
@@ -63,7 +59,7 @@ router.get('/pizzas/delete',(request,response)=>{
 router.get('/orders',(request,response)=>{
     Order.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('admin_orders',{orders:foundres});
+        response.render('admin_orders',{layout:'admin',orders:foundres});
     });
 });
 
@@ -71,7 +67,7 @@ router.get('/orders/delete',(request,response)=>{
     const order_id = request.query.order_id;
     Order.findByIdAndDelete(order_id, (err)=>{
         if(err) throw err;
-        response.render('status',{status:`order with id ${order_id} successfully deleted<br><a href='/admin/orders'>back</a>`});
+        response.redirect('/admin/orders');
     })
 });
 

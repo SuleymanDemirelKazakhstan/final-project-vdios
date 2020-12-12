@@ -26,10 +26,9 @@ router.get('/basket',(request,response)=>{
     else{
         request.session.basket[pizza_id] += 1;
     }
-
+    ///adding the pizza to session.basket and redirecting back to home page
     response.redirect('/home');
 });
-
 
 ////make order////
 
@@ -43,6 +42,7 @@ function getTotalCost(orderlist){
 
 router.get('/order',(request,response)=>{
     const basketlist = request.session.basket;
+    //in orderlist we will keep array of pairs {pizza,count}
     let orderlist = [];
     for(let item in basketlist){
         Pizza.findById(item).lean().exec((error,foundres)=>{
@@ -51,6 +51,7 @@ router.get('/order',(request,response)=>{
         });
     }
 
+    //searching for the current user who is making the order, but it's not necessary to be logged in to make any order
     User.findOne({username:request.session.username}).lean().exec((error,foundres)=>{
         if(error) throw error;
         request.session.orderlist = orderlist;

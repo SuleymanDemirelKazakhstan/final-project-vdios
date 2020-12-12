@@ -8,7 +8,8 @@ const pizza_item = mongoose.Schema({
 
 const orderSchema = mongoose.Schema({
     username:{
-        type:String
+        type:String,
+        default:'____'
     },
 
     address:{
