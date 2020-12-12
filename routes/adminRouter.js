@@ -30,8 +30,10 @@ router.get('/pizzas',(request,response)=>{
     });
 });
 
+///create new pizza///
+
 router.get('/pizzas/create',(request,response)=>{
-    response.render('admin_create_pizza',{layout:'admin'});
+    response.render('pizza_create',{layout:'admin'});
 });
 
 router.post('/pizzas/create/status',(request,response)=>{
@@ -46,10 +48,34 @@ router.post('/pizzas/create/status',(request,response)=>{
     });
 });
 
+///delete pizza///
+
 router.get('/pizzas/delete',(request,response)=>{
     const pizza_id = request.query.pizza_id;
     Pizza.findByIdAndDelete(pizza_id, (err)=>{
         if(err) throw err;
+        response.redirect('/admin/pizzas');
+    })
+});
+
+///change pizza///
+
+router.get('/pizzas/change',(request,response)=>{
+    const pizza_id = request.query.pizza_id;
+    request.session.change_pizza_id = pizza_id;
+    Pizza.findById(pizza_id).lean().exec((error,foundres)=>{
+        if(error) throw error;
+        response.render('pizza_change',{layout:'admin',pizza:foundres});
+    });
+});
+
+router.post('/pizzas/change/status',(request,response)=>{
+    const pizza_name = request.body.pizza_name;
+    const recipe = request.body.recipe;
+    const price = request.body.price;
+    Pizza.findByIdAndUpdate(request.session.change_pizza_id,{$set:{pizza_name:pizza_name,recipe:recipe,price:price}},(err)=>{
+        if(err) throw err;
+        request.session.change_pizza_id = null;
         response.redirect('/admin/pizzas');
     })
 });
@@ -68,7 +94,7 @@ router.get('/orders/delete',(request,response)=>{
     Order.findByIdAndDelete(order_id, (err)=>{
         if(err) throw err;
         response.redirect('/admin/orders');
-    })
+    });
 });
 
 module.exports = router;

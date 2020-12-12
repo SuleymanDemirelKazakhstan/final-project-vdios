@@ -13,7 +13,8 @@ app.engine('handlebars',exphbs());
 app.set('view engine','handlebars');
 app.use(express.static('public'))
 
-mongoose.connect(mongourl,{useNewUrlParser:true,useUnifiedTopology:true},(err,ok)=>{
+///useFindAndModify set to false to use findByIdAndUpdate without warning
+mongoose.connect(mongourl,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify: false},(err,ok)=>{
     if(err) throw err;
     app.listen(3003,()=>console.log('listening...'));
 });

@@ -1,4 +1,3 @@
-const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
@@ -7,7 +6,7 @@ const User = require('../models/user.js');
 
 router.get('/',(request,response)=>{
     if(request.session.username){
-        response.render('status',{status:`welcome '${request.session.username}', let's <a href='/home'>buy</a> some pizza<br><a href='/auth/out'>log out</a>`});
+        response.redirect('/home/my_orders');
     }
     else{
         response.render('user_login');
@@ -18,8 +17,11 @@ router.post('/status',(request,response)=>{
     const username = request.body.username;
     const password = request.body.password;
 
-        User.findOne({username:username},'username password',(err,foundres)=>{
-            if(err) throw err;
+    if(username == '' || password == '')
+        response.render('status',{status:`invalid input format, please <a href='/auth'>login</a> again`});
+
+        User.findOne({username:username},'username password',(error,foundres)=>{
+            if(error) throw error;
                 if(foundres){
                     if(foundres.password == password){
                         request.session.username = username;

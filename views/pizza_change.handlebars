@@ -1,0 +1,21 @@
+<style>
+    .form_container{
+        display:flex;
+        flex-direction: column;
+        width:200px;
+        margin:0 auto;
+    }
+</style>
+
+<div class='form_container'>
+    <h3>create pizza</h3>
+    <form action='/admin/pizzas/change/status' method='post'>
+        <label>pizza name: </label>
+        <input type='text' name='pizza_name' value={{pizza.pizza_name}}>
+        <label>recipe: </label>
+        <textarea name='recipe' rows='8'>{{pizza.recipe}}</textarea>
+        <label>price: </label>
+        <input type='number' name='price' value={{pizza.price}}>
+        <input type='submit'>
+    </form>
+</div>

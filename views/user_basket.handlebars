@@ -3,7 +3,6 @@
         display:flex;
         justify-content: space-evenly;
     }
-
     .bill{
         display:flex;
         flex-direction:column;
@@ -13,18 +12,15 @@
         border-radius:10px;
         position:relative;
     }
-
     .order_form{
         display:flex;
         flex-direction:column;
         width:200px;
     }
-
     .basket_item{
         display:flex;
         justify-content: space-between;
     }
-
     .basket_item p{
         margin:0px;
     }
@@ -47,7 +43,7 @@
             <label>address: </label>
             <input type='text' name='address' value={{userdata.address}}>
             <label>phone number: </label>
-            <input type='text' name='phone_number' value="{{userdata.phone_number}}"><br>
+            <input type='text' name='phone_number' value={{userdata.phone_number}}><br>
             <input type='submit'>
         </form>
     </div>
