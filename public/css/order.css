@@ -26,11 +26,3 @@
 .order_date{
     font-size:0.8em;
 }
-
-.order_delete{
-    position:absolute;
-    bottom:10px;
-    left:20px;
-    text-decoration: none;
-    color:red;
-}

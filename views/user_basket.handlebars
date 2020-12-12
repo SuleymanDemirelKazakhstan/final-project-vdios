@@ -1,35 +1,45 @@
 <style>
-    .order_container{
+    .basket_container{
         display:flex;
+        justify-content: space-evenly;
     }
 
-    .orderlist{
+    .bill{
         display:flex;
         flex-direction:column;
-        width:300px;
-        margin:0 auto;
-        padding:10px;
-        border:3px solid green;
+        width:250px;
+        padding:20px;
+        border:3px solid purple;
         border-radius:10px;
+        position:relative;
     }
 
     .order_form{
         display:flex;
         flex-direction:column;
         width:200px;
-        margin:0 auto;
     }
 
+    .basket_item{
+        display:flex;
+        justify-content: space-between;
+    }
+
+    .basket_item p{
+        margin:0px;
+    }
 </style>
 
-<div class='order_container'>
-    <div class='orderlist'>
+<div class='basket_container'>
+    <div class='bill'>
         <h3>your order: </h3>
         {{#each order}}
-            {{pizza_description.pizza_name}} {{pizza_description.price}}  x{{count}}<br>
+            <div class='basket_item'>
+                <p>{{pizza_description.pizza_name}}: {{pizza_description.price}} tg</p> <p>x{{count}}</p>
+            </div>
         {{/each}}
-        <h3>total: {{totalcost}}</h3>
-        <a href='/home/order/drop'>drop</a>
+        <h3>total: {{totalcost}} tg</h3>
+        <a href='/home/order/drop' class='delete'>drop</a>
     </div>
 
     <div class='order_form'>

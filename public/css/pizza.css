@@ -36,14 +36,6 @@
     font-size:0.7em;
 }
 
-.pizza_delete{
-    position:absolute;
-    bottom:10px;
-    left: 20px;
-    text-decoration: none;
-    color:red;
-}
-
 .add_pizza{
     text-decoration: none;
     color:green;

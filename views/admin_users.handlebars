@@ -5,13 +5,20 @@
     }
     .user_card{
         border:3px solid blue;
+        position:relative;
+        width:220px;
         border-radius:10px;
-        padding: 10px;
+        padding: 20px;
+        margin:10px;
+    }
+    .add_user{
+        text-decoration: none;
+        color:green;
         margin:10px;
     }
 </style>
 
-<a href='/auth/regist'>add new user</a>
+<a href='/auth/regist' class='add_user'>add new user</a>
 <div class='users_container'>
     {{#each users}}
         <div class='user_card'>
@@ -19,7 +26,7 @@
             <p>password: {{this.password}}</p>
             <p>address: {{this.address}}</p>
             <p>phone number: {{this.phone_number}}</p>
-            <a href='/admin/users/delete/?user_id={{this._id}}'>delete</a>
+            <a href='/admin/users/delete/?user_id={{this._id}}' class='delete'>delete</a>
         </div>
     {{/each}}
 </div>
