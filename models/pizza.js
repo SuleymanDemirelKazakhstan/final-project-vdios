@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 
 const pizzaSchema = mongoose.Schema({
-    name:{
+    pizza_name:{
         type:String,
         required:true
     },
 
-    
+    recipe:{
+        type:String,
+        required:true
+    },
 
     price:{
         type:Number,

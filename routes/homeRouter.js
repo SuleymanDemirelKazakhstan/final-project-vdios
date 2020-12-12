@@ -9,34 +9,43 @@ router.get('/',(request,response)=>{
     //lean parses mongoose object to json
     Pizza.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('pizza_card',{pizzas:foundres});
+        response.render('user_pizza',{pizzas:foundres});
     });
     
 });
 
 router.get('/basket',(request,response)=>{
-    const name = request.query.name;
+    const pizza_id = request.query.pizza_id;
     if(!request.session.basket){
         request.session.basket = {};
     }
 
-    if(!request.session.basket[name]){
-        request.session.basket[name] = 1;
+    if(!request.session.basket[pizza_id]){
+        request.session.basket[pizza_id] = 1;
     }
     else{
-        request.session.basket[name] += 1;
+        request.session.basket[pizza_id] += 1;
     }
 
-    const template = `<a href='/home'>back</a>`
-    response.render('status',{status:template});
+    response.redirect('/home');
 });
+
+
+////make order////
+
+function getTotalCost(orderlist){
+    let total=0;
+    for(let item of orderlist){
+        total+=item.pizza_description.price*item.count;
+    }
+    return total;
+}
 
 router.get('/order',(request,response)=>{
     const basketlist = request.session.basket;
-
     let orderlist = [];
     for(let item in basketlist){
-        Pizza.findOne({name:item}).lean().exec((error,foundres)=>{
+        Pizza.findById(item).lean().exec((error,foundres)=>{
             if(error) throw error;
             orderlist.push({pizza_description:foundres,count:basketlist[item]});
         });
@@ -44,22 +53,44 @@ router.get('/order',(request,response)=>{
 
     User.findOne({username:request.session.username}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('order',{order:orderlist,userdata:foundres});
+        request.session.orderlist = orderlist;
+        const totalcost = getTotalCost(orderlist);
+        response.render('user_basket',{userdata:foundres,order:orderlist,totalcost:totalcost});
     });
+});
+
+router.get('/order/drop',(request,response)=>{
+    request.session.basket = null;
+    response.redirect('/home/order');
 });
 
 router.post('/order/status',(request,response)=>{
     const phone_number = request.body.phone_number;
     const address = request.body.address;
-    const currentOrder = new Order({phone_number:phone_number,address:address,basket:request.session.orderlist});
+    const currentOrder = new Order({username:request.session.username,phone_number:phone_number,address:address,basket:request.session.orderlist});
     currentOrder.save((err)=>{
         if(err){
             response.render('status',{status:err});
         }
         else{
+            request.session.basket = {};
             response.render('status',{status:`order successfully registered to database`});
         }
     });  
+});
+
+///my orders///
+
+router.get('/my_orders',(request,response)=>{
+    if(request.session.username){
+        Order.find({username:request.session.username}).lean().exec((error,foundres)=>{
+            if(error) throw error;
+            response.render('user_orders',{orders:foundres});
+        });
+    }
+    else{
+        response.render('status',{status:`please, <a href='/auth'>login</a>`})
+    }
 });
 
 module.exports = router;

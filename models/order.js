@@ -7,6 +7,10 @@ const pizza_item = mongoose.Schema({
 });
 
 const orderSchema = mongoose.Schema({
+    username:{
+        type:String
+    },
+
     address:{
         type:String,
         required:true
@@ -20,6 +24,11 @@ const orderSchema = mongoose.Schema({
     basket:{
         type:[pizza_item],
         required:true
+    },
+
+    date:{
+        type:Date,
+        default:Date.now
     }
 });
 

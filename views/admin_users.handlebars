@@ -1,0 +1,22 @@
+<style>
+    .users_container{
+        display:flex;
+    }
+    .user_card{
+        border:1px solid blue;
+        padding: 10px;
+    }
+</style>
+
+<a href='/auth/regist'>add new user</a>
+<div class='users_container'>
+    {{#each users}}
+        <div class='user_card'>
+            <p>name: {{this.username}}</p>
+            <p>password: {{this.password}}</p>
+            <p>address: {{this.address}}</p>
+            <p>phone number: {{this.phone_number}}</p>
+            <a href='/admin/users/delete/?user_id={{this._id}}'>delete</a>
+        </div>
+    {{/each}}
+</div>

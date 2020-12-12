@@ -3,29 +3,25 @@ console.log('hello client');
 let basket = [];
 let total = 0;
 
-function printname(x){
+function sendPost(x){
     const bt = x.currentTarget;
     const parent = bt.parentElement;
     const name = parent.querySelector('.item_name').textContent;
-    const price = parent.querySelector('.price').textContent;
 
-    if(bt.textContent === 'choose'){
-        bt.textContent = 'in basket';
-        bt.classList.add('inbasket');
-        basket.push(name);
-        total+=parseInt(price);
-    }
-
-    else{
-        bt.textContent = 'choose';
-        bt.classList.remove('inbasket');
-        basket.push(name);
-        total+=parseInt(price);
-    }   
-
+    fetch('http://localhost:3003/home/basket',{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-type':'application/json'
+        },
+        body:name
+    })
+    .then((res)=>res.json())
+    .then((data)=>console.log(data))
+    .catch((err)=>console.log(err));
 }
 
-// let available = document.querySelectorAll('.button_choose');
-// for(let item of available){
-//     item.addEventListener('click',printname);
-// }
+let available = document.querySelectorAll('.choose_button');
+for(let item of available){
+    item.addEventListener('click',sendPost);
+}

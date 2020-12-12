@@ -1,0 +1,24 @@
+<style>
+   .pizza_container{
+        display:flex;
+        flex-wrap: wrap;
+    }
+    .pizza_card{
+        border:1px solid blue;
+        padding: 10px;
+        width:300px;
+    }
+</style>
+
+<a href='/admin/pizzas/create'>add new pizza</a>
+<div class='pizza_container'>
+    {{#each pizzas}}
+        <div class='pizza_card'>
+            <p>id: {{_id}}</p>
+            <p>pizza_name: {{this.pizza_name}}</p>
+            <p>recipe: {{this.recipe}}</p>
+            <p>price: {{this.price}}</p>
+            <a href='/admin/pizzas/delete/?pizza_id={{this._id}}'>delete</a>
+        </div>
+    {{/each}}
+</div>

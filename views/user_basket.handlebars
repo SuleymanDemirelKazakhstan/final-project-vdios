@@ -6,7 +6,7 @@
     .orderlist{
         display:flex;
         flex-direction:column;
-        width:200px;
+        width:300px;
         margin:0 auto;
     }
 
@@ -16,14 +16,17 @@
         width:200px;
         margin:0 auto;
     }
+
 </style>
 
 <div class='order_container'>
     <div class='orderlist'>
         <h3>your order: </h3>
         {{#each order}}
-            {{pizza_description.name}} {{pizza_description.price}}  x{{count}}<br>
+            {{pizza_description.pizza_name}} {{pizza_description.price}}  x{{count}}<br>
         {{/each}}
+        <h3>total: {{totalcost}}</h3>
+        <a href='/home/order/drop'>drop</a>
     </div>
 
     <div class='order_form'>
