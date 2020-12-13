@@ -8,9 +8,8 @@ router.get('/',(request,response)=>{
     //lean parses mongoose object to json
     Pizza.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('user_pizza',{pizzas:foundres});
+        response.render('user/user_pizza',{pizzas:foundres});
     });
-    
 });
 
 router.get('/basket',(request,response)=>{
@@ -55,7 +54,7 @@ router.get('/order',(request,response)=>{
         if(error) throw error;
         request.session.orderlist = orderlist;
         const totalcost = getTotalCost(orderlist);
-        response.render('user_basket',{userdata:foundres,order:orderlist,totalcost:totalcost});
+        response.render('user/user_basket',{userdata:foundres,order:orderlist,totalcost:totalcost});
     });
 });
 
@@ -82,10 +81,9 @@ router.post('/order/status',(request,response)=>{
 ///my orders///
 
 router.get('/my_orders',(request,response)=>{
-    
     Order.find({username:request.session.username}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('user_orders',{username:request.session.username,orders:foundres});
+        response.render('user/user_orders',{username:request.session.username,orders:foundres});
     });
 });
 

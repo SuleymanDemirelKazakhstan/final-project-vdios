@@ -4,36 +4,19 @@ const User = require('../models/user.js');
 const Pizza = require('../models/pizza.js');
 const Order = require('../models/order.js');
 
-///users///
-
-router.get('/users',(request,response)=>{
-    User.find({}).lean().exec((error,foundres)=>{
-        if(error) throw error;
-        response.render('admin_users',{layout:'admin',users:foundres});
-    });
-});
-
-router.get('/users/delete',(request,response)=>{
-    const user_id = request.query.user_id;
-    User.findByIdAndDelete(user_id, (err)=>{
-        if(err) throw err;
-        response.redirect('/admin/users');
-    })
-});
-
 ///pizzas///
 
 router.get('/pizzas',(request,response)=>{
     Pizza.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('admin_pizzas',{layout:'admin',pizzas:foundres});
+        response.render('admin/admin_pizzas',{layout:'admin',pizzas:foundres});
     });
 });
 
 ///create new pizza///
 
 router.get('/pizzas/create',(request,response)=>{
-    response.render('pizza_create',{layout:'admin'});
+    response.render('admin/admin_pizza_create',{layout:'admin'});
 });
 
 router.post('/pizzas/create/status',(request,response)=>{
@@ -65,7 +48,7 @@ router.get('/pizzas/change',(request,response)=>{
     request.session.change_pizza_id = pizza_id;
     Pizza.findById(pizza_id).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('pizza_change',{layout:'admin',pizza:foundres});
+        response.render('admin/admin_pizza_change',{layout:'admin',pizza:foundres});
     });
 });
 
@@ -85,7 +68,7 @@ router.post('/pizzas/change/status',(request,response)=>{
 router.get('/orders',(request,response)=>{
     Order.find({}).lean().exec((error,foundres)=>{
         if(error) throw error;
-        response.render('admin_orders',{layout:'admin',orders:foundres});
+        response.render('admin/admin_orders',{layout:'admin',orders:foundres});
     });
 });
 
@@ -95,6 +78,23 @@ router.get('/orders/delete',(request,response)=>{
         if(err) throw err;
         response.redirect('/admin/orders');
     });
+});
+
+///users///
+
+router.get('/users',(request,response)=>{
+    User.find({}).lean().exec((error,foundres)=>{
+        if(error) throw error;
+        response.render('admin/admin_users',{layout:'admin',users:foundres});
+    });
+});
+
+router.get('/users/delete',(request,response)=>{
+    const user_id = request.query.user_id;
+    User.findByIdAndDelete(user_id, (err)=>{
+        if(err) throw err;
+        response.redirect('/admin/users');
+    })
 });
 
 module.exports = router;

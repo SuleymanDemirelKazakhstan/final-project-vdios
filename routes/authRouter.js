@@ -9,7 +9,7 @@ router.get('/',(request,response)=>{
         response.redirect('/home/my_orders');
     }
     else{
-        response.render('user_login');
+        response.render('user/user_login');
     }
 });
 
@@ -47,7 +47,7 @@ router.get('/out',(request,response)=>{
 //registration///
 
 router.get('/regist',(request,response)=>{
-    response.render('user_regist');
+    response.render('user/user_regist');
 });
 
 router.post('/regist/status',(request,response)=>{
